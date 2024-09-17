@@ -1,0 +1,186 @@
+# ------------------------------------------------------
+# THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
+# ------------------------------------------------------
+
+type UserCountAggregate {
+  id: Int!
+  username: Int!
+  password: Int!
+  _all: Int!
+}
+
+type UserAvgAggregate {
+  id: Float
+}
+
+type UserSumAggregate {
+  id: Int
+}
+
+type UserMinAggregate {
+  id: Int
+  username: String
+  password: String
+}
+
+type UserMaxAggregate {
+  id: Int
+  username: String
+  password: String
+}
+
+type UserCount {
+  Post: Int!
+  Comment: Int!
+}
+
+type Comment {
+  id: ID!
+  content: String!
+  postId: Int!
+  userId: Int!
+  post: Post!
+  user: User!
+}
+
+type PostCount {
+  comments: Int!
+}
+
+type Post {
+  id: ID!
+  title: String!
+  content: String!
+  likes: Int!
+  userId: Int!
+  comments: [Comment!]
+  user: User!
+  _count: PostCount!
+}
+
+type User {
+  id: ID!
+  username: String!
+  password: String!
+  Post: [Post!]
+  Comment: [Comment!]
+  _count: UserCount!
+}
+
+type PostCountAggregate {
+  id: Int!
+  title: Int!
+  content: Int!
+  likes: Int!
+  userId: Int!
+  _all: Int!
+}
+
+type PostAvgAggregate {
+  id: Float
+  likes: Float
+  userId: Float
+}
+
+type PostSumAggregate {
+  id: Int
+  likes: Int
+  userId: Int
+}
+
+type PostMinAggregate {
+  id: Int
+  title: String
+  content: String
+  likes: Int
+  userId: Int
+}
+
+type PostMaxAggregate {
+  id: Int
+  title: String
+  content: String
+  likes: Int
+  userId: Int
+}
+
+type CommentCountAggregate {
+  id: Int!
+  content: Int!
+  postId: Int!
+  userId: Int!
+  _all: Int!
+}
+
+type CommentAvgAggregate {
+  id: Float
+  postId: Float
+  userId: Float
+}
+
+type CommentSumAggregate {
+  id: Int
+  postId: Int
+  userId: Int
+}
+
+type CommentMinAggregate {
+  id: Int
+  content: String
+  postId: Int
+  userId: Int
+}
+
+type CommentMaxAggregate {
+  id: Int
+  content: String
+  postId: Int
+  userId: Int
+}
+
+type Query {
+  sayHello: String!
+  user(id: Int!): User!
+  post(id: Int!): Comment!
+  posts(userId: Int!): [Post!]!
+  commentsByUserId(userId: Int!): [Comment!]!
+  commentsByPostId(postId: Int!): [Comment!]!
+}
+
+type Mutation {
+  createUser(createNewUser: CreateNewUserGraphDto!): User!
+  createPost(createNewPost: CreateNewPostDto!): Post!
+  updatePost(updatePost: UpdatePostDto!): Post!
+  createComment(createNewComment: CreateNewCommentDto!): Comment!
+  updateComment(updateComment: UpdateCommentDto!): Comment!
+}
+
+input CreateNewUserGraphDto {
+  username: String!
+  password: String!
+}
+
+input CreateNewPostDto {
+  title: String!
+  content: String!
+  likes: Float!
+  userId: Float!
+}
+
+input UpdatePostDto {
+  title: String!
+  content: String!
+  likes: Float!
+  id: Float!
+}
+
+input CreateNewCommentDto {
+  content: String!
+  postId: Float!
+  userId: Float!
+}
+
+input UpdateCommentDto {
+  content: String!
+  id: Float!
+}
