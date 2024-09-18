@@ -2,6 +2,10 @@
 # THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
 # ------------------------------------------------------
 
+type AuthResponseDto {
+  accessToken: String!
+}
+
 type UserCountAggregate {
   id: Int!
   username: Int!
@@ -67,6 +71,40 @@ type User {
   _count: UserCount!
 }
 
+type CommentCountAggregate {
+  id: Int!
+  content: Int!
+  postId: Int!
+  userId: Int!
+  _all: Int!
+}
+
+type CommentAvgAggregate {
+  id: Float
+  postId: Float
+  userId: Float
+}
+
+type CommentSumAggregate {
+  id: Int
+  postId: Int
+  userId: Int
+}
+
+type CommentMinAggregate {
+  id: Int
+  content: String
+  postId: Int
+  userId: Int
+}
+
+type CommentMaxAggregate {
+  id: Int
+  content: String
+  postId: Int
+  userId: Int
+}
+
 type PostCountAggregate {
   id: Int!
   title: Int!
@@ -104,40 +142,6 @@ type PostMaxAggregate {
   userId: Int
 }
 
-type CommentCountAggregate {
-  id: Int!
-  content: Int!
-  postId: Int!
-  userId: Int!
-  _all: Int!
-}
-
-type CommentAvgAggregate {
-  id: Float
-  postId: Float
-  userId: Float
-}
-
-type CommentSumAggregate {
-  id: Int
-  postId: Int
-  userId: Int
-}
-
-type CommentMinAggregate {
-  id: Int
-  content: String
-  postId: Int
-  userId: Int
-}
-
-type CommentMaxAggregate {
-  id: Int
-  content: String
-  postId: Int
-  userId: Int
-}
-
 type Query {
   sayHello: String!
   user(id: Int!): User!
@@ -153,6 +157,7 @@ type Mutation {
   updatePost(updatePost: UpdatePostDto!): Post!
   createComment(createNewComment: CreateNewCommentDto!): Comment!
   updateComment(updateComment: UpdateCommentDto!): Comment!
+  signIn(username: String!, password: String!): AuthResponseDto!
 }
 
 input CreateNewUserGraphDto {
@@ -183,4 +188,8 @@ input CreateNewCommentDto {
 input UpdateCommentDto {
   content: String!
   id: Float!
+}
+
+type Subscription {
+  commentAdded(postId: Float!): Comment!
 }

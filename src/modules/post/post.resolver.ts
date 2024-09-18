@@ -1,5 +1,5 @@
 import { Args, Int, Mutation, Query, Resolver } from "@nestjs/graphql";
-import { Post } from "src/shared/prismagraphql/post";
+import { Post } from "../shared/prismagraphql/post";
 import { PostService } from "./post.service";
 import { CreateNewPostDto } from "./dto/createNewPost.dto";
 import { UpdatePostDto } from "./dto/updateNewPost.dto";
