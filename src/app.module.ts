@@ -11,6 +11,7 @@ import { PostModule } from './modules/post/post.module';
 import { PrismaModule } from './modules/prisma/prisma.module';
 import { AppResolver } from './modules/resolvers/app.resolver';
 import { UserModule } from './modules/users/user.module';
+import { EventEmitterModule } from '@nestjs/event-emitter';
 
 
 @Module({
@@ -21,13 +22,14 @@ import { UserModule } from './modules/users/user.module';
       playground: process.env.ENV!=='production',
       context: ({ req }) => ({ request: req }),
       subscriptions: {
-        'graphql-ws': true,  // Sử dụng giao thức WebSocket cho Subscriptions
+        'graphql-ws': true,
       },
       installSubscriptionHandlers: true,
     }),
     ConfigModule.forRoot({
       isGlobal: true,
     }),
+    EventEmitterModule.forRoot(),
     PrismaModule,
     UserModule,
     PostModule,

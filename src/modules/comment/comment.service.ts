@@ -4,12 +4,14 @@ import { Comment } from "@prisma/client";
 import { UpdateCommentDto } from "./dto/updateComment.dto";
 import { CommentSubscriptionService } from "./commentSubcription.service";
 import { PrismaService } from "../prisma/prisma.service";
+import { EventEmitter2 } from "@nestjs/event-emitter";
 
 @Injectable()
 export class CommentService {
     constructor(
         private readonly prisma: PrismaService, 
-        private readonly commentSubscriptionService: CommentSubscriptionService
+        private readonly commentSubscriptionService: CommentSubscriptionService,
+        private eventEmitter: EventEmitter2
     ) {
     }
 
@@ -19,6 +21,8 @@ export class CommentService {
         })
 
         await this.commentSubscriptionService.publishCommentAdded(newComment);
+
+        this.eventEmitter.emit('comment.created', newComment);
 
         return newComment;
     }
